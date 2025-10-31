@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+.pycache/
+
+# Environment variables
+.env
+
+# Local data artifacts
+data/
+storage/
+logs/
+*.ann
+*.jsonl
+
+# OS files
+.DS_Store

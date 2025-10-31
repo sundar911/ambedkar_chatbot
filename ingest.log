@@ -1,0 +1,7 @@
+Failed to read VolumeH18.pdf: Stream has ended unexpectedly
+Failed to read VolumeH19.pdf: Stream has ended unexpectedly
+Failed to read VolumeH34.pdf: Stream has ended unexpectedly
+Failed to read VolumeH36.pdf: Stream has ended unexpectedly
+Failed to read VolumeH40.pdf: Stream has ended unexpectedly
+Embedding 57460 chunks using text-embedding-3-small...
+Vector store ready with 57460 chunks across 53 PDFs.

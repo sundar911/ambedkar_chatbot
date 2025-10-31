@@ -1,0 +1,32 @@
+[project]
+name = "ambedkar-chatbot"
+version = "0.1.0"
+description = "Conversational agent grounded in Ambedkar's writings"
+authors = [
+    {name = "Sundar Raghavan",email = "sundarraghavan@example.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.9,<3.15"
+dependencies = [
+    "openai (>=2.5.0,<3.0.0)",
+    "pypdf (>=6.1.2,<7.0.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)",
+    "typer (>=0.19.2,<0.20.0)",
+    "rich (>=14.2.0,<15.0.0)",
+    "annoy (>=1.17.3,<2.0.0)",
+    "orjson (>=3.11.3,<4.0.0)"
+]
+
+[project.scripts]
+"ambedkar-chatbot" = "ambedkar_chatbot.cli:main"
+
+[tool.poetry]
+packages = [
+    {include = "ambedkar_chatbot", from = "src"}
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
