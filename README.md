@@ -12,6 +12,46 @@ A retrieval-augmented chatbot that helps people explore and debate the writings 
 
 ## Getting Started
 
+You can drive the project either with `uv` or with Poetry. Pick the flow that matches your toolchain.
+
+### Option A — uv
+
+1. **Create and activate the virtual environment**
+   ```bash
+   cd /Users/sundarraghavanl/PycharmProjects/ambedkar_chatbot
+   uv venv --python /usr/bin/python3 .venv
+   source .venv/bin/activate
+   ```
+2. **Install the project in editable mode**
+   ```bash
+   uv pip install --upgrade pip setuptools wheel
+   uv pip install -e .
+   ```
+3. **Create a `.env` file** (or export the variables in your shell):
+   ```bash
+   cat <<'ENV' > .env
+   OPENAI_API_KEY=sk-your-key
+   # Optional overrides
+   # EMBED_MODEL=text-embedding-3-small
+   # CHAT_MODEL=gpt-4o-mini
+   # CHUNK_SIZE=320
+   # CHUNK_OVERLAP=60
+   # TOP_K=6
+   ENV
+   ```
+4. **Build the vector store** (downloads embeddings for all PDFs and writes Annoy index + metadata):
+   ```bash
+   ambedkar-chatbot ingest
+   ```
+   The first run can take a while and incurs OpenAI embedding costs. Artefacts are written to `data/`.
+5. **Chat with the companion**:
+   ```bash
+   ambedkar-chatbot chat
+   ```
+   Type `exit` (or press `Ctrl+D`) to leave the conversation.
+
+### Option B — Poetry
+
 1. **Install dependencies**
    ```bash
    poetry install
@@ -28,22 +68,21 @@ A retrieval-augmented chatbot that helps people explore and debate the writings 
    # TOP_K=6
    ENV
    ```
-3. **Build the vector store** (downloads embeddings for all PDFs and writes Annoy index + metadata):
+3. **Build the vector store**:
    ```bash
    poetry run ambedkar-chatbot ingest
    ```
-   The first run can take a while and incurs OpenAI embedding costs. Artefacts are written to `data/`.
 4. **Chat with the companion**:
    ```bash
    poetry run ambedkar-chatbot chat
    ```
-   Type `exit` (or press `Ctrl+D`) to leave the conversation.
+   The CLI behaviour matches the `uv` commands above.
 
 ## CLI Reference
 
-- `poetry run ambedkar-chatbot ingest --incremental` — append only new material; defaults to full rebuild
-- `poetry run ambedkar-chatbot info` — quick health check for index/metadata files
-- `poetry run ambedkar-chatbot chat --top-k 8` — override the number of context chunks
+- `ambedkar-chatbot ingest --incremental` — append only new material; defaults to full rebuild
+- `ambedkar-chatbot info` — quick health check for index/metadata files
+- `ambedkar-chatbot chat --top-k 8` — override the number of context chunks
 
 ## Persona Guidelines
 
